@@ -3,6 +3,7 @@ param dataFactoryName string
 param cosmosDbAccountName string
 param sqlServerName string
 param sqlDbName string
+param keyVaultName string
 
 resource dataFactory 'Microsoft.DataFactory/factories@2018-06-01' = {
   name: dataFactoryName
@@ -50,3 +51,15 @@ module pipeline 'pipeline/samplePipeline.bicep' = {
     factoryName: dataFactory.name
   }
 }
+
+resource kvLinkedService 'Microsoft.DataFactory/factories/linkedservices@2018-06-01' = {
+  parent: dataFactory
+  name: 'KeyVaultLinkedService'
+  properties: {
+    type: 'AzureKeyVault'
+    typeProperties: {
+      baseUrl: 'https://${keyVaultName}.vault.azure.net/'
+    }
+  }
+}
+

@@ -1,0 +1,62 @@
+trigger:
+  branches:
+    include:
+      - main
+
+parameters:
+  - name: environment
+    displayName: Deployment Environment
+    type: string
+    default: 'dev'
+    values:
+      - dev
+      - prod
+
+variables:
+  - group: 'ADF-$(parameters.environment)'
+
+stages:
+  - stage: Validate
+    displayName: Validate ${{ parameters.environment }} Deployment
+    jobs:
+      - job: ValidateTemplate
+        displayName: Validate Bicep Template
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            name: ValidateBicep
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'AzureServiceConnection'
+              subscriptionId: '$(subscriptionId)'        # from variable group
+              action: 'Validate'
+              resourceGroupName: '$(ResourceGroup)'
+              location: '$(location)'
+              templateLocation: 'Linked artifact'
+              csmFile: 'main.bicep'
+              csmParametersFile: 'parameters-$(parameters.environment).json'
+
+  - stage: Deploy
+    displayName: Deploy to ${{ parameters.environment }}
+    dependsOn: Validate
+    condition: succeeded()
+    jobs:
+      - deployment: DeployADF
+        environment: '${{ parameters.environment }}'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureResourceManagerTemplateDeployment@3
+                  name: DeployBicep
+                  inputs:
+                    deploymentScope: 'Resource Group'
+                    azureResourceManagerConnection: 'AzureServiceConnection'
+                    subscriptionId: '$(subscriptionId)'        # from variable group
+                    action: 'Create Or Update Resource Group'
+                    resourceGroupName: '$(ResourceGroup)'
+                    location: '$(location)'
+                    templateLocation: 'Linked artifact'
+                    csmFile: 'main.bicep'
+                    csmParametersFile: 'parameters-$(parameters.environment).json'

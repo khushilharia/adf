@@ -1,0 +1,8 @@
+{
+    "dataFactoryName": { "value": "adf-prod" },
+    "cosmosDbAccountName": { "value": "cosmosdb-prod" },
+    "sqlServerName": { "value": "sqlserver-prod" },
+    "sqlDbName": { "value": "sqldb-prod" },
+    "keyVaultName": { "value": "kv-prod" }
+  }
+  

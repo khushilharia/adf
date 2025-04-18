@@ -28,12 +28,12 @@ stages:
           - task: PublishBuildArtifacts@1
 
           - task: AzureResourceManagerTemplateDeployment@3
-            name: ValidateBicep
+            name: ValidateBicep (What If)
             inputs:
               deploymentScope: 'Resource Group'
               azureResourceManagerConnection: 'Pay-as-you-go-sc'
               subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
-              action: 'Validate'
+              action: 'What If'
               resourceGroupName: 'khrg'
               location: 'EastUS'
               templateLocation: 'Linked artifact'

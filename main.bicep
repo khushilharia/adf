@@ -1,4 +1,4 @@
-param location string = resourceGroup().location
+param location string
 param dataFactoryName string
 param cosmosDbAccountName string
 param sqlServerName string

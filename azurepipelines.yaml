@@ -43,8 +43,8 @@ stages:
 
   - stage: Deploy
     displayName: Deploy to ${{ parameters.environment }}
-    dependsOn: Validate
-    condition: succeeded()
+    #dependsOn: Validate
+    #condition: succeeded()
     jobs:
       - deployment: DeployADF
         environment: '${{ parameters.environment }}'

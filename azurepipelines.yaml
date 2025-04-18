@@ -35,7 +35,7 @@ stages:
               subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
               action: 'Validate'
               resourceGroupName: 'khrg'
-              #location: 'EastUS'
+              location: 'EastUS'
               templateLocation: 'Linked artifact'
               csmFile: 'main.bicep'
               csmParametersFile: 'parameters/parameters-${{ parameters.environment }}.json'

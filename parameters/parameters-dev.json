@@ -1,5 +1,4 @@
 {
-    "location": {"value": "EastUS"},
     "dataFactoryName": { "value": "adf-dev" },
     "cosmosDbAccountName": { "value": "cosmosdb-dev" },
     "sqlServerName": { "value": "sqlserver-dev" },

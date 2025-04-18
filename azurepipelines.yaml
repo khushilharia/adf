@@ -28,7 +28,7 @@ stages:
           - task: PublishBuildArtifacts@1
 
           - task: AzureResourceManagerTemplateDeployment@3
-            name: ValidateBicep (What If)
+            name: ValidateBicep What If
             inputs:
               deploymentScope: 'Resource Group'
               azureResourceManagerConnection: 'Pay-as-you-go-sc'

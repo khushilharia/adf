@@ -13,7 +13,7 @@ parameters:
       - prod
 
 variables:
-  - group: 'ADF-$(parameters.environment)'
+  - group: 'parameters/ADF-$(parameters.environment)'
 
 stages:
   - stage: Validate
@@ -28,14 +28,14 @@ stages:
             name: ValidateBicep
             inputs:
               deploymentScope: 'Resource Group'
-              azureResourceManagerConnection: 'AzureServiceConnection'
-              subscriptionId: '$(subscriptionId)'        # from variable group
+              azureResourceManagerConnection: 'Pay-as-you-go-sc'
+              subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
               action: 'Validate'
-              resourceGroupName: '$(ResourceGroup)'
-              location: '$(location)'
+              resourceGroupName: 'khrg'
+              location: 'EastUS'
               templateLocation: 'Linked artifact'
               csmFile: 'main.bicep'
-              csmParametersFile: 'parameters-$(parameters.environment).json'
+              csmParametersFile: 'parameters/parameters-$(parameters.environment).json'
 
   - stage: Deploy
     displayName: Deploy to ${{ parameters.environment }}
@@ -52,11 +52,11 @@ stages:
                   name: DeployBicep
                   inputs:
                     deploymentScope: 'Resource Group'
-                    azureResourceManagerConnection: 'AzureServiceConnection'
-                    subscriptionId: '$(subscriptionId)'        # from variable group
+                    azureResourceManagerConnection: 'Pay-as-you-go-sc'
+                    subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
                     action: 'Create Or Update Resource Group'
-                    resourceGroupName: '$(ResourceGroup)'
-                    location: '$(location)'
+                    resourceGroupName: 'khrg'
+                    location: 'EastUS'
                     templateLocation: 'Linked artifact'
                     csmFile: 'main.bicep'
-                    csmParametersFile: 'parameters-$(parameters.environment).json'
+                    csmParametersFile: 'parameters/parameters-$(parameters.environment).json'

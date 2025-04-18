@@ -24,6 +24,9 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
+
+          - task: PublishBuildArtifacts@1
+
           - task: AzureResourceManagerTemplateDeployment@3
             name: ValidateBicep
             inputs:

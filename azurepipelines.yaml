@@ -35,7 +35,7 @@ stages:
               location: 'EastUS'
               templateLocation: 'Linked artifact'
               csmFile: 'main.bicep'
-              csmParametersFile: 'parameters/parameters-$(parameters.environment).json'
+              csmParametersFile: 'parameters/parameters-${{ parameters.environment }}.json'
 
   - stage: Deploy
     displayName: Deploy to ${{ parameters.environment }}
@@ -59,4 +59,4 @@ stages:
                     location: 'EastUS'
                     templateLocation: 'Linked artifact'
                     csmFile: 'main.bicep'
-                    csmParametersFile: 'parameters/parameters-$(parameters.environment).json'
+                    csmParametersFile: 'parameters/parameters-${{ parameters.environment }}.json'

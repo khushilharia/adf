@@ -62,6 +62,6 @@ stages:
                     resourceGroupName: 'khrg'
                     location: 'EastUS'
                     templateLocation: 'Linked artifact'
-                    csmFile: 'main.bicep'
+                    csmFile: 'adf/main.bicep'
                     csmParametersFile: 'parameters/parameters-${{ parameters.environment }}.json'
                     overrideParameters: '-location "EastUS"'

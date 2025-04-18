@@ -16,30 +16,30 @@ variables:
   - group: 'ADF-$(parameters.environment)'
 
 stages:
-  # - stage: Validate
-  #   displayName: Validate ${{ parameters.environment }} Deployment
-  #   jobs:
-  #     - job: ValidateTemplate
-  #       displayName: Validate Bicep Template
-  #       pool:
-  #         vmImage: ubuntu-latest
-  #       steps:
+  - stage: Validate
+    displayName: Validate ${{ parameters.environment }} Deployment
+    jobs:
+      - job: ValidateTemplate
+        displayName: Validate Bicep Template
+        pool:
+          vmImage: ubuntu-latest
+        steps:
 
-  #         - task: PublishBuildArtifacts@1
+          - task: PublishBuildArtifacts@1
 
-  #         - task: AzureResourceManagerTemplateDeployment@3
-  #           name: ValidateBicepWhatIf
-  #           inputs:
-  #             deploymentScope: 'Subscription'
-  #             azureResourceManagerConnection: 'Pay-as-you-go-sc'
-  #             subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
-  #             action: 'Validate'
-  #             resourceGroupName: 'khrg'
-  #             location: 'EastUS'
-  #             templateLocation: 'Linked artifact'
-  #             csmFile: 'main.bicep'
-  #             csmParametersFile: 'parameters/parameters-${{ parameters.environment }}.json'
-  #             overrideParameters: '-location "EastUS"'
+          # - task: AzureResourceManagerTemplateDeployment@3
+          #   name: ValidateBicepWhatIf
+          #   inputs:
+          #     deploymentScope: 'Subscription'
+          #     azureResourceManagerConnection: 'Pay-as-you-go-sc'
+          #     subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
+          #     action: 'Validate'
+          #     resourceGroupName: 'khrg'
+          #     location: 'EastUS'
+          #     templateLocation: 'Linked artifact'
+          #     csmFile: 'main.bicep'
+          #     csmParametersFile: 'parameters/parameters-${{ parameters.environment }}.json'
+          #     overrideParameters: '-location "EastUS"'
 
   - stage: Deploy
     displayName: Deploy to ${{ parameters.environment }}

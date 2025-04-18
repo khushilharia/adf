@@ -13,7 +13,7 @@ parameters:
       - prod
 
 variables:
-  - group: 'parameters/ADF-$(parameters.environment)'
+  - group: 'ADF-$(parameters.environment)'
 
 stages:
   - stage: Validate

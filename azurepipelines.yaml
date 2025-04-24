@@ -15,7 +15,7 @@ parameters:
 variables:
   - group: 'ADF-$(parameters.environment)'
 
-# stages:
+stages:
 #   - stage: Validate
 #     displayName: Validate ${{ parameters.environment }} Deployment
 #     jobs:

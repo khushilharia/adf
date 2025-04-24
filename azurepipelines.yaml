@@ -15,15 +15,15 @@ parameters:
 variables:
   - group: 'ADF-$(parameters.environment)'
 
-stages:
-  - stage: Validate
-    displayName: Validate ${{ parameters.environment }} Deployment
-    jobs:
-      - job: ValidateTemplate
-        displayName: Validate Bicep Template
-        pool:
-          vmImage: ubuntu-latest
-        steps:
+# stages:
+#   - stage: Validate
+#     displayName: Validate ${{ parameters.environment }} Deployment
+#     jobs:
+#       - job: ValidateTemplate
+#         displayName: Validate Bicep Template
+#         pool:
+#           vmImage: ubuntu-latest
+#         steps:
 
          # - task: PublishBuildArtifacts@1
 

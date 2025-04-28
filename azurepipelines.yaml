@@ -24,7 +24,7 @@ stages:
         steps:
 
           - task: PublishBuildArtifacts@1
-            displayName: 'Publish source as drop'
+            displayName: 'Publish'
             inputs:
               PathtoPublish: '$(Build.SourcesDirectory)'
               # ArtifactName: drop
@@ -73,3 +73,4 @@ stages:
                     csmFile: '$(System.DefaultWorkingDirectory)/main.bicep'
                     csmParametersFile: '$(System.DefaultWorkingDirectory)/parameters/parameters-${{ parameters.environment }}.json'
                     overrideParameters: '-location "EastUS"'
+                    deploymentMode: 'Incremental'

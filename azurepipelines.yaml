@@ -24,10 +24,10 @@ stages:
         steps:
 
           - task: PublishBuildArtifacts@1
-            displayName: 'Publish source as drop'
-            inputs:
-              PathtoPublish: '$(Build.SourcesDirectory)'
-              ArtifactName: drop
+            # displayName: 'Publish source as drop'
+            # inputs:
+            #   PathtoPublish: '$(Build.SourcesDirectory)'
+            #   ArtifactName: drop
 
           # - task: AzureResourceManagerTemplateDeployment@3
           #   name: ValidateBicepWhatIf

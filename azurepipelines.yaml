@@ -76,5 +76,5 @@ stages:
                     templateLocation: 'Linked artifact'
                     csmFile: '$(System.DefaultWorkingDirectory)/main.bicep'
                     csmParametersFile: '$(System.DefaultWorkingDirectory)/parameters/parameters-${{ parameters.environment }}.json'
-                    overrideParameters: '-location "EastUS"'
+                    # overrideParameters: '-location "EastUS"'
                     deploymentMode: 'Incremental'

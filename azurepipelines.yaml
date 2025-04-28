@@ -11,50 +11,43 @@ parameters:
     values:
       - dev
       # - prod
-
-
+        
 stages:
-  - stage: Validate
-    displayName: Validate ${{ parameters.environment }} Deployment
+  - stage: CreateAzureVNET
+    displayName: 'CreateSQLServer'
     jobs:
-      - job: ValidateTemplate
-        displayName: Validate Bicep Template
-        steps:
-
+      - deployment: CreateSQLServer
+        environment: 'dev'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                
                 - task: PublishBuildArtifacts@1
                   displayName: 'Publish Bicep Artifact'
                   inputs:
                     pathtoPublish: '$(System.DefaultWorkingDirectory)'
                     artifactName: 'bicep'
                     publishLocation: 'Container'
-
-  - stage: Deploy
-    displayName: Deploy to ${{ parameters.environment }}
-    jobs:
-      - deployment: DeployADF
-        environment: '${{ parameters.environment }}'
-        strategy:
-          runOnce:
-            deploy:
-              steps:   
-                
+                    
                 - script: |
                       echo "Files in current directory:"
                       ls -R
                       pwd
                   displayName: 'List files'
 
+
                 - task: AzureResourceManagerTemplateDeployment@3
-                  name: DeployBicep
+                  displayName: 'Bicep to Deploy SQLvServer'
                   inputs:
                     deploymentScope: 'Resource Group'
                     azureResourceManagerConnection: 'Pay-as-you-go-sc'
-                    subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'        # from variable group
+                    subscriptionId: '6f0f938c-0599-4b69-9b56-09468ec24549'
                     action: 'Create Or Update Resource Group'
                     resourceGroupName: 'khrg'
                     location: 'EastUS'
                     templateLocation: 'Linked artifact'
-                    csmFile: '$(System.DefaultWorkingDirectory)/main.bicep'
-                    csmParametersFile: '$(System.DefaultWorkingDirectory)/parameters/parameters-${{ parameters.environment }}.json'
-                    # overrideParameters: '-location "EastUS"'
+                    csmFile: 'main.bicep'
+                    csmParametersFile: 'parameters-dev.json'
                     deploymentMode: 'Incremental'

@@ -57,6 +57,7 @@ stages:
                 - script: |
                       echo "Files in current directory:"
                       ls -R
+                      pwd
                   displayName: 'List files'
 
                 - task: AzureResourceManagerTemplateDeployment@3

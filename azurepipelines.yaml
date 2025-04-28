@@ -53,9 +53,9 @@ stages:
             deploy:
               steps:
                 - script: |
-                    echo "Files in current directory:"
+                      echo "Files in current directory:"
                       ls -R
-                    displayName: 'List files'
+                  displayName: 'List files'
 
                 - task: AzureResourceManagerTemplateDeployment@3
                   name: DeployBicep

@@ -23,7 +23,7 @@ stages:
 #         displayName: Validate Bicep Template
 #         pool:
 #           vmImage: ubuntu-latest
-         steps:
+         #steps:
 
           - task: PublishBuildArtifacts@1
 

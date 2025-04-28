@@ -30,7 +30,7 @@ stages:
                     pathtoPublish: '$(System.DefaultWorkingDirectory)'
                     artifactName: 'bicep'
                     publishLocation: 'Container'
-                    
+
                 - script: |
                       echo "Files in current directory:"
                       ls -R
@@ -49,5 +49,5 @@ stages:
                     location: 'EastUS'
                     templateLocation: 'Linked artifact'
                     csmFile: 'main.bicep'
-                    csmParametersFile: 'parameters-dev.json'
+                    csmParametersFile: 'parameters/parameters-dev.json'
                     deploymentMode: 'Incremental'

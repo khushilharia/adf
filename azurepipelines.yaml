@@ -16,16 +16,16 @@ variables:
   - group: 'ADF-$(parameters.environment)'
 
 stages:
-#   - stage: Validate
-#     displayName: Validate ${{ parameters.environment }} Deployment
-#     jobs:
+  - stage: Validate
+    displayName: Validate ${{ parameters.environment }} Deployment
+    jobs:
 #       - job: ValidateTemplate
 #         displayName: Validate Bicep Template
 #         pool:
 #           vmImage: ubuntu-latest
-#         steps:
+         steps:
 
-         # - task: PublishBuildArtifacts@1
+          - task: PublishBuildArtifacts@1
 
           # - task: AzureResourceManagerTemplateDeployment@3
           #   name: ValidateBicepWhatIf

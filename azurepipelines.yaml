@@ -54,6 +54,9 @@ stages:
           runOnce:
             deploy:
               steps:
+                - download: current
+                  artifact: drop    
+                
                 - script: |
                       echo "Files in current directory:"
                       ls -R

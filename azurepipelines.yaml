@@ -48,6 +48,6 @@ stages:
                     resourceGroupName: 'khrg'
                     location: 'East US'
                     templateLocation: 'Linked artifact'
-                    csmFile: 'main.bicep'
-                    csmParametersFile: 'parameters/parameters-dev.json'
+                    csmFile: '$(System.DefaultWorkingDirectory)/main.bicep'
+                    csmParametersFile: '$(System.DefaultWorkingDirectory)/parameters/parameters-dev.json'
                     deploymentMode: 'Incremental'

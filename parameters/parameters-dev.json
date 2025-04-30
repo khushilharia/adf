@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location" : {"value": "East US"},
-    "dataFactoryName": { "value": "adf-dev" },
+    "dataFactoryName": { "value": "khadf-dev" },
     "cosmosDbAccountName": { "value": "cosmosdb-dev" },
     "sqlServerName": { "value": "sqlserver-dev" },
     "sqlDbName": { "value": "sqldb-dev" },
